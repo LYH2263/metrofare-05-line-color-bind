@@ -1,8 +1,16 @@
+<script setup>
+import { onMounted, ref } from 'vue'
+import { getJSON } from './api'
+const lines = ref([])
+onMounted(async () => { try { lines.value = (await getJSON('/api/lines')).items } catch { /* 离线展示 */ } })
+</script>
 <template>
   <div class="metro-shell">
     <header class="line-bar">
-      <span class="line-a">1号线</span>
-      <span class="line-b">支线</span>
+      <span v-for="l in lines" :key="l.code"
+            class="line-chip" :style="{ '--line-color': l.color }">
+        {{ l.name }} <code>{{ l.code }}</code>
+      </span>
       <span class="brand">Metrofare</span>
     </header>
     <nav class="tab-nav">

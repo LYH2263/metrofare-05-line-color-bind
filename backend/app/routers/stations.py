@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from app.services.metro_service import MetroService
+from app.schemas.lines import StationLinesUpdate
+from app.services.metro_service import MetroService, ValidationError
 
 router = APIRouter(tags=["stations"])
 
@@ -14,4 +15,15 @@ def get_station(code: str):
         row = s.station(code)
         if not row:
             raise HTTPException(404)
+        return row
+
+@router.put("/stations/{code}/lines")
+def update_station_lines(code: str, body: StationLinesUpdate):
+    with MetroService() as s:
+        try:
+            row = s.update_station_lines(code, body.lines)
+        except ValidationError as exc:
+            raise HTTPException(422, str(exc))
+        if not row:
+            raise HTTPException(404, f"站点不存在: {code}")
         return row
