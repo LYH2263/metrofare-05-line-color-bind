@@ -1,8 +1,18 @@
+<script setup>
+import { onMounted } from 'vue'
+import { lineStore } from './store'
+onMounted(() => lineStore.load())
+</script>
+
 <template>
   <div class="metro-shell">
     <header class="line-bar">
-      <span class="line-a">1号线</span>
-      <span class="line-b">支线</span>
+      <span
+        v-for="l in lineStore.lines"
+        :key="l.code"
+        class="line-tab"
+        :style="{ borderLeftColor: l.color }"
+      >{{ l.name }}</span>
       <span class="brand">Metrofare</span>
     </header>
     <nav class="tab-nav">

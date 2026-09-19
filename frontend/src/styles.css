@@ -6,6 +6,7 @@ a { color: var(--accent); text-decoration: none; }
 .panel { background: var(--panel); padding: 1rem; border-radius: 10px; margin: 0.75rem 0; }
 .metro-shell { min-height: 100vh; }
 .line-bar { display:flex; gap:1rem; align-items:center; padding:0.75rem 1rem; background:#060d1a; }
+.line-tab { border-left:4px solid var(--muted); padding-left:0.5rem; font-weight:700; }
 .line-a { border-left:4px solid var(--line-a); padding-left:0.5rem; font-weight:700; }
 .line-b { border-left:4px solid var(--line-b); padding-left:0.5rem; font-weight:700; }
 .brand { margin-left:auto; color: var(--accent); }
@@ -14,6 +15,38 @@ a { color: var(--accent); text-decoration: none; }
 table { width:100%; border-collapse:collapse; }
 th,td { text-align:left; padding:0.4rem; border-bottom:1px solid #243860; }
 button { background: var(--accent); border:0; padding:0.4rem 0.85rem; border-radius:6px; font-weight:600; cursor:pointer; color:#051018; }
+button.ghost { background: transparent; color: var(--text); border:1px solid var(--muted); }
+button.mini { padding:0.2rem 0.6rem; font-size:0.85rem; }
 .hero-num { font-size:2.2rem; font-weight:700; color: var(--accent); }
-.muted { color: var(--muted); }
+.muted { color: var(--muted); font-size:0.9em; }
 input, select { background:#0a1528; border:1px solid var(--muted); color:var(--text); padding:0.35rem; border-radius:4px; }
+.error { color:#ff8089; font-weight:600; }
+
+/* 线路色带公共件 */
+.band-swatch { display:inline-block; width:10px; height:18px; border-radius:2px; margin-right:0.35rem; vertical-align:middle; }
+
+/* 线网概览分组 */
+.line-group { border-left:6px solid var(--muted); }
+.line-head { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.6rem; flex-wrap:wrap; }
+.station-chips { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.chip { display:inline-flex; align-items:center; gap:0.3rem; border:1px solid var(--muted); border-radius:999px; padding:0.25rem 0.7rem; font-size:0.92em; }
+.chip-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+.color-edit { display:inline-flex; gap:0.4rem; align-items:center; }
+
+/* 站点详情 */
+.membership-list { list-style:none; margin:0.4rem 0; padding:0; display:flex; flex-direction:column; gap:0.45rem; }
+.membership-edit { display:flex; flex-direction:column; gap:0.5rem; }
+.check-line { display:flex; align-items:center; gap:0.4rem; }
+.line-tag { display:inline-flex; align-items:center; border:1px solid var(--muted); border-radius:999px; padding:0.1rem 0.55rem; margin-right:0.35rem; font-size:0.85em; }
+
+/* 邻接 */
+.edge-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:0.45rem; }
+.edge-row { display:flex; align-items:center; gap:0.7rem; background:var(--panel); padding:0.5rem 0.75rem; border-radius:8px; }
+.edge-line { min-width:7rem; }
+.edge-ends { font-weight:600; }
+
+/* 询价序列 */
+.seq { display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem; margin-top:0.5rem; }
+.seg { display:inline-flex; align-items:center; border-left:4px solid var(--muted); border-radius:4px; padding:0.2rem 0.55rem; background:#0d1a36; font-size:0.9em; gap:0.3rem; }
+.transfer-mark, .hist-seq .transfer-mark { color:#ffd166; font-weight:700; font-size:0.8em; margin:0 0.15rem; }
+.hist-seq { display:inline-flex; align-items:center; margin-right:0.5rem; font-size:0.9em; }

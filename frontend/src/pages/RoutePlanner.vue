@@ -17,7 +17,20 @@ const run = async () => { out.value = await postJSON('/api/quote', { start: star
       <button @click="run">试算</button>
     </div>
     <div v-if="out" class="panel">
-      <p v-if="out.reachable">站数 {{ out.hops }} · 票价 <span class="hero-num">¥{{ out.fare }}</span></p>
+      <template v-if="out.reachable">
+        <p>站数 {{ out.hops }} · 换线 <strong>{{ out.transfers }}</strong> 次 · 票价 <span class="hero-num">¥{{ out.fare }}</span></p>
+        <p class="muted">起讫编码 {{ out.start }} → {{ out.end }}</p>
+        <div class="seq">
+          <template v-for="(e, i) in out.path_edges" :key="i">
+            <span class="seg" :style="{ borderColor: e.line_color }">
+              <span class="band-swatch" :style="{ background: e.line_color }"></span>
+              {{ e.a }} → {{ e.b }}
+              <span class="muted">{{ e.line_code }}</span>
+            </span>
+            <span v-if="i > 0 && out.path_edges[i - 1].line_code !== e.line_code" class="transfer-mark">换线</span>
+          </template>
+        </div>
+      </template>
       <p v-else class="muted">不可达</p>
     </div>
   </div>
